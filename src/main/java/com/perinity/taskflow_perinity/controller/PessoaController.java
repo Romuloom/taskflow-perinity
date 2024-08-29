@@ -90,7 +90,6 @@ public class PessoaController {
             pessoaInfo.put("nome", pessoa.getNome());
             pessoaInfo.put("departamento", pessoa.getDepartamento());
 
-            // Filtra tarefas dentro do período e calcula a média de horas
             List<Tarefa> tarefasNoPeriodo = pessoa.getTarefas().stream()
                     .filter(t -> !t.getPrazo().isBefore(dataInicio) && !t.getPrazo().isAfter(dataFim))
                     .collect(Collectors.toList());
@@ -119,7 +118,6 @@ public class PessoaController {
                             ((int) departamentoInfo.get(pessoa.getDepartamento()).getOrDefault("pessoas", 0)) + 1);
         }
 
-        // Contabilizar as tarefas por departamento
         for (Tarefa tarefa : tarefas) {
             departamentoInfo.putIfAbsent(tarefa.getDepartamento(), new HashMap<>());
             departamentoInfo.get(tarefa.getDepartamento())
@@ -127,7 +125,6 @@ public class PessoaController {
                             ((int) departamentoInfo.get(tarefa.getDepartamento()).getOrDefault("tarefas", 0)) + 1);
         }
 
-        // Converter para lista
         return departamentoInfo.entrySet().stream()
                 .map(entry -> {
                     Map<String, Object> map = new HashMap<>();

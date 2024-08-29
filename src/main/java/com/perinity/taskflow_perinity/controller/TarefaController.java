@@ -83,7 +83,6 @@ public class TarefaController {
             Tarefa tarefa = tarefaOptional.get();
             Pessoa pessoa = pessoaOptional.get();
 
-            // Verifica se os departamentos são os mesmos
             if (!tarefa.getDepartamento().equals(pessoa.getDepartamento())) {
                 return ResponseEntity.badRequest().body(null); // Retorna erro se os departamentos forem diferentes
             }
