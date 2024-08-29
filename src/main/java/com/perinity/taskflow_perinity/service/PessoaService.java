@@ -12,15 +12,11 @@ import org.springframework.stereotype.Service;
 import com.perinity.taskflow_perinity.model.Pessoa;
 import com.perinity.taskflow_perinity.model.Tarefa;
 import com.perinity.taskflow_perinity.repository.PessoaRepository;
-import com.perinity.taskflow_perinity.repository.TarefaRepository;
 
 @Service
 public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
-
-    @Autowired
-    private TarefaRepository tarefaRepository;
 
     @Autowired
     private TarefaService tarefaService;
@@ -47,8 +43,7 @@ public class PessoaService {
 
     public List<Map<String, Object>> listarDepartamentos() {
         List<Pessoa> pessoas = pessoaRepository.findAll();
-        List<Tarefa> tarefas = tarefaService.findAll(); // Lembre-se de injetar o TarefaService
-
+        List<Tarefa> tarefas = tarefaService.findAll();
         Map<String, Map<String, Object>> departamentoInfo = new HashMap<>();
 
         for (Pessoa pessoa : pessoas) {
