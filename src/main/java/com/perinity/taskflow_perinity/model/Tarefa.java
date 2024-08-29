@@ -2,13 +2,15 @@ package com.perinity.taskflow_perinity.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
 public class Tarefa {
-        @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -25,12 +27,13 @@ public class Tarefa {
     private String departamento;
 
     @Column(nullable = false)
-    private int duracao; // em horas
+    private int duracao;
 
     @Column(nullable = false)
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "pessoa_id", nullable = false)
+    @JoinColumn(name = "pessoa_id", nullable = true)
+    @JsonBackReference
     private Pessoa pessoaResponsavel;
 }
